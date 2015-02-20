@@ -6,8 +6,13 @@
 
   <table class="todo-table">
     {{ page._todos.each do |todo| }}
-      <tr>
-        <td>{{ todo._name }}</td>
+      <tr
+          e-click="params._index = index"
+          class="{{ if params._index.or(0).to_i == index }}selected{{ end }}"
+          >############# HERE ######
+        <td><input type="checkbox" checked="{{ todo._completed }}" /></td>
+        <td class="{{ if todo._completed }}complete{{ end }}">&nbsp{{ todo._name }}&nbsp</td>
+        <td><button e-click="remove_todo(todo)">X</button></td>
       </tr>
     {{ end }}
   </table>
@@ -19,7 +24,4 @@
     </div>
   </form>
 
-  <tr>
-    <td>{{ todo._name }}</td>
-    <td><button e-click="remove_todo(todo)">X</button></td>
-  </tr>
+  
